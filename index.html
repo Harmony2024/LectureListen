@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Assistant</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree&display=swap">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-family: 'Figtree', sans-serif;
+            color: #333;
+            background-color: #66b3ff;
+            padding: 10px;
+            border-radius: 80px;
+            margin: 0 auto 20px;
+            max-width: 200px;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #result {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Understand Assistant</h1>
+    <input type="file" id="fileInput">
+    <br>
+    <button onclick="uploadFile()">Submit</button>
+    <h3 id="title"></h3>
+    <div id="result"></div>
+
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("file", file);
+
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("title").innerHTML = "";
+
+            let isFirstChunk = true;
+
+            fetch('/gpt-voice', { method: 'POST', body: formData })
+                .then(response => {
+                    const reader = response.body.getReader();
+                    function read() {
+                        reader.read().then(({ done, value }) => {
+                            if (done) {
+                                console.log('Stream complete');
+                                return;
+                            }
+                            const textDecoder = new TextDecoder();
+                            const chunk = textDecoder.decode(value);
+
+                            if (isFirstChunk) {
+                                document.getElementById("title").innerHTML = chunk;
+                                isFirstChunk = false;
+                            } else {
+                                document.getElementById("result").innerHTML += chunk;
+                            }
+                            read();
+                        });
+                    }
+                    read();
+                });
+        }
+    </script>
+</body>
+</html>
