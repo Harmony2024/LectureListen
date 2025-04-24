@@ -102,7 +102,7 @@ $ bash run.sh --stage 3 --ngpu 1
 
 
 ## demo
-<div align="center"> <table> <tr> <td align="center"><strong>🖼️ 구성 </strong></td> <td align="center"><strong>📽️ STT 및 ChatGPT 응답</strong></td> </tr> <tr> <td> <img src="https://github.com/user-attachments/assets/5470e3cf-34b3-4431-a425-db7022c37587" width="400"/> </td> <td> <img src="https://github.com/cshooon/LectureListen/assets/113033780/88dc14a1-e47c-4591-bb5f-5cf2cc8bdef2" width="400"/> </td> </tr> </table> </div>
+<div align="center"> <table> <tr> <td align="center"><strong>🖼️ 구성 </strong></td> <td align="center"><strong>📽️ STT 및 ChatGPT 응답</strong></td> </tr> <tr> <td> <img src="https://github.com/user-attachments/assets/f08a984f-def4-414a-801f-abd9fefb3580" width="400"/> </td> <td> <img src="https://github.com/cshooon/LectureListen/assets/113033780/88dc14a1-e47c-4591-bb5f-5cf2cc8bdef2" width="400"/> </td> </tr> </table> </div>
 
 
 ## Members
