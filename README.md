@@ -1,4 +1,4 @@
-# SmartLecture
+# LectureListen
 > **2023 동계 AI SCI 부트캠프 – “인공지능을 통한 음성인식”**  
 > 🏆 최우수상 수상 **(참가 8 팀 중 2 팀 선발)**
 
